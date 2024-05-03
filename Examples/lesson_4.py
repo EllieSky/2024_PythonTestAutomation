@@ -1,7 +1,6 @@
 
 class Person:
     def __init__(self, name, salary):
-        # self.person_name = name
         self.name = name
         self.net_worth = 0
         self.hourly_salary = float(salary)
@@ -15,15 +14,12 @@ class Person:
         return self.net_worth
 
     def buy_something(self, thing):
-        # add to inventory
         pass
 
     def sell_something(self, thing):
-        # remove from inventory
         pass
 
     def do_work(self, hours):
-        # yes, you can also you multiplication :)
         for h in range(int(hours)):
             self.net_worth += self.hourly_salary
 
