@@ -51,8 +51,6 @@ bobby.right(90)
 bobby.pencolor("dark green")
 bobby.forward(300)
 
-bobby.penup()
-bobby.backward(300)
-bobby.pendown()
+
 
 scr.exitonclick()
