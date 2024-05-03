@@ -28,7 +28,7 @@ class Person:
             self.net_worth += self.hourly_salary
 
 
-person1 = Person("Mila", 55)
+person1 = Person("Maria", 55)
 person2 = Person("Steve", 50)
 
 person2.introduce_self()
