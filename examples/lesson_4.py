@@ -28,7 +28,7 @@ class Person:
             self.net_worth += self.hourly_salary
 
 
-person1 = Person("Maria", 55)
+person1 = Person("Mila", 55)
 person2 = Person("Steve", 50)
 
 person2.introduce_self()
@@ -39,6 +39,7 @@ person1.do_work(4)
 
 print('person 1: ')
 person1.check_net_worth()
+
 
 print('person 2: ')
 person2.check_net_worth()
