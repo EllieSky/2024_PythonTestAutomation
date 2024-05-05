@@ -37,7 +37,7 @@ person_2 = Person("Steve", 50)
 
 person_2.introduce_self()
 person_2.do_work(8)
-print("person_1)
+print("person_1")
 person_2.check_net_worth()
 
 person_1.introduce_self()
