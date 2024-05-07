@@ -4,55 +4,41 @@ from random import randint
 
 colormode(255)
 
-bobby = Turtle()
-bobby.speed(15)
-bobby.shape('turtle')
-bobby.color("dark green")
-bobby.pensize(4)
+tom = Turtle()
+tom.shape("turtle")
+tom.color("dark blue")
+tom.pensize(4)
+tom.speed(50)
 
 
-def draw_square(size=40):
-    draw_shape(size, 4)
+def draw_shape(size, num_angles):
+    angle = 360 / num_angles
+    for side in range(num_angles):
+        tom.forward(size)
+        tom.left(angle)
 
 
-def draw_triangle(size=40):
-    for s in range(3):
-        bobby.forward(size)
-        bobby.left(120)
-
-
-def draw_shape(size, num_sides):
-    angle = 360 / num_sides
-    for s in range(num_sides):
-        bobby.forward(size)
-        bobby.left(angle)
-
-
-def get_color():
+def choose_color():
     r = randint(0, 255)
     g = randint(0, 255)
     b = randint(0, 255)
-    return r, g, b
+    return (r, g, b)
 
 
-def draw_flower(petals, color=get_color()):
-    bobby.pencolor(color)
-    turn_degrees = 360 / petals
+def draw_flower(petals, color=choose_color()):
+    tom.pencolor(color)
+    turn_degree = 360 / petals
     for petal in range(petals):
         draw_shape(50, 7)
-        bobby.right(turn_degrees)
+        tom.right(turn_degree)
+
+
+draw_flower(7)
+tom.right(90)
+tom.pencolor("green")
+tom.forward(350)
 
 
 scr = Screen()
 scr.listen()
-
-draw_flower(13)
-bobby.right(90)
-bobby.pencolor("dark green")
-bobby.forward(300)
-
-bobby.penup()
-bobby.backward(300)
-bobby.pendown()
-
 scr.exitonclick()
