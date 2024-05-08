@@ -1,3 +1,4 @@
+import time
 
 class Person:
     def __init__(self, name, salary):
@@ -21,6 +22,7 @@ class Person:
 
     def do_work(self, hours):
         for h in range(int(hours)):
+            time.sleep(1)
             self.net_worth += self.hourly_salary
 
 
@@ -29,6 +31,8 @@ person2 = Person("Steve", 50)
 
 person2.introduce_self()
 person2.do_work(8)
+
+
 
 person1.introduce_self()
 person1.do_work(4)
