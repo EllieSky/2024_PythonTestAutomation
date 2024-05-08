@@ -1,12 +1,15 @@
 import time
+from faker import Faker
 
 
 class Person:
-    def __init__(self, name, salary):
+    def __init__(self):
         # self.person_name = name
-        self.name = name
+        data = Faker()
+        self.name = data.first_name()
+        self.job = data.job()
         self.net_worth = 0
-        self.hourly_salary = float(salary)
+        self.hourly_salary = float(data.random_int(20, 120))
         self.stuff = list()
     def introduce_self(self):
         print(f'My name is {self.name}')
@@ -43,8 +46,8 @@ class Person:
 
 
 
-person1 = Person("Ramya", salary= 55)
-person2 = Person("sri", salary= 75)
+person1 = Person()
+person2 = Person()
 
 person2.introduce_self()
 person2.do_work(8)
