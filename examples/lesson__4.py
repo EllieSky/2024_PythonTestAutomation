@@ -1,9 +1,11 @@
 import time
+from faker import Faker
 
 class Person:
     def __init__(self, name, salary):
+        data = Faker()
+        self.name = data.first_name()
         self.net_worth = 0
-        self.name = name
         self.hourly_salary = float(salary)
         self.stuff = list()
 
