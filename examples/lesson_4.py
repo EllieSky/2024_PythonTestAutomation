@@ -43,7 +43,7 @@ person2 = Person("Steve", 50)
 ####  Interact with one of the objects
 person2.introduce_self()
 person2.do_work(8)
-
+# hello
 print('person 2: ')
 person2.report_net_worth()
 
