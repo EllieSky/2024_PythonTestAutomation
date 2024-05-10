@@ -61,13 +61,11 @@ print('person 2: ')
 person2.check_net_worth()
 
 person1.buy_something({"item": 'apple', 'price': 250})
-print("Maria's stuff:", person1.stuff)
 print("Maria's net worth:", person1.net_worth)
 
-person1.sell_something({"item": 'toy car', 'price': 250})
+person1.sell_something({"item": 'toy car', 'price': 1.25})
 print("Maria's stuff:", person1.stuff)
 print("Maria's net worth:", person1.net_worth)
-
-person1.sell_something({"item": 'banana', 'price': 1.25})
-person1.show_possessions()
 print("Maria's net worth after selling:", person1.net_worth)
+
+
