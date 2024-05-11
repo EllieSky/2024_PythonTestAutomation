@@ -25,19 +25,48 @@ def choose_color():
     return (r, g, b)
 
 
-def draw_flower(petals, color=choose_color()):
+def draw_flower(petals, stem_length, color):
+    #Draw stem
+    tom.penup()
+    tom.setheading(90)
+    tom.pencolor("green")
+    tom.pendown()
+    tom.forward(stem_length)
+
+    #Draw flower
+    tom.penup()
     tom.pencolor(color)
+    tom.pendown()
     turn_degree = 360 / petals
     for petal in range(petals):
-        draw_shape(50, 7)
+        draw_shape(50, 3)
         tom.right(turn_degree)
 
+def draw_garden(num_flowers):
+    stem_length = 250
 
-draw_flower(7)
-tom.right(90)
-tom.pencolor("green")
-tom.forward(350)
+    # Calculate starting position:
+    screen = Screen()
+    screen_height = screen.window_height()
+    screen_width = screen.window_width()
+    start_x = (screen_width / 3)
+    start_y = -(screen_height / 4)
 
+    # Go to starting position:
+    tom.penup()
+    tom.goto(start_x, start_y)
+
+    # Draw flowers
+    for n in range(num_flowers):
+        tom.penup()
+        draw_flower(randint(3, 12), stem_length, color=choose_color())
+        tom.penup()
+        tom.backward(stem_length)
+        tom.left(90)
+        tom.forward(100)  # Spacing between flowers
+
+
+draw_garden(7)  # Draw a garden with n flowers
 
 scr = Screen()
 scr.listen()
