@@ -39,17 +39,18 @@ def draw_flower(petals, stem_length, color):
     tom.pendown()
     turn_degree = 360 / petals
     for petal in range(petals):
-        draw_shape(50, 3)
+        draw_shape(20, randint(3,12))
         tom.right(turn_degree)
 
 def draw_garden(num_flowers):
-    stem_length = 250
+    stem_length = randint(150,350)
+
 
     # Calculate starting position:
     screen = Screen()
     screen_height = screen.window_height()
     screen_width = screen.window_width()
-    start_x = (screen_width / 3)
+    start_x = (screen_width / 2.5)
     start_y = -(screen_height / 4)
 
     # Go to starting position:
@@ -63,10 +64,10 @@ def draw_garden(num_flowers):
         tom.penup()
         tom.backward(stem_length)
         tom.left(90)
-        tom.forward(100)  # Spacing between flowers
+        tom.forward(180)  # Spacing between flowers
 
 
-draw_garden(7)  # Draw a garden with n flowers
+draw_garden(5)  # Draw a garden with n flowers
 
 scr = Screen()
 scr.listen()
