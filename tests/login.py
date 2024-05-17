@@ -1,6 +1,4 @@
-import time
 import unittest
-
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -18,25 +16,27 @@ class LoginTests(unittest.TestCase):
 
     def test_valid_login(self):
         browser = self.browser
-        browser.find_element(By.ID,'userName').send_keys('EllieSky')
-        browser.find_element(By.ID,'password').send_keys('Password1!')
-        browser.find_element(By.ID,'login').location_once_scrolled_into_view
-        browser.find_element(By.ID,'login').click()
+        browser.find_element(By.ID, 'userName').send_keys('EllieSky')
+        browser.find_element(By.ID, 'password').send_keys('Password1!')
+        browser.find_element(By.ID, 'login').location_once_scrolled_into_view
+        browser.find_element(By.ID, 'login').click()
 
-        # after login we want to check that username is displayed
-        time.sleep(2)
+        # After login in, we want to check the expected username is displayed
         self.assertEqual('elliesky', browser.find_element(By.ID, 'userName-value').text)
+
         self.assertIn('/profile', browser.current_url)
 
-        btn_logout_text = browser.find_element(By.ID, 'submit').text
-        self.assertEqual('Log out', btn_logout_text)
+        btn_logout_txt = browser.find_element(By.ID, 'submit').text
+        self.assertEqual('Log out', btn_logout_txt)
 
 
-    def test_invalid_password(selfs):
+
+    def test_invalid_password(self):
         pass
 
-    def test_no_password(selfs):
+    def test_no_password(self):
         pass
+
 
 if __name__ == '__main__':
     unittest.main()
