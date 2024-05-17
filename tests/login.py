@@ -44,8 +44,8 @@ class LoginTests(unittest.TestCase):
         browser.find_element(By.ID, 'password').send_keys('Password!')
         browser.find_element(By.ID, 'login').location_once_scrolled_into_view
         browser.find_element(By.ID, 'login').click()
-        xpath_attr_value = browser.find_element(By.ID,'output').get_attribute('class')
-        self.assertIn('Invalid username or password!', xpath_attr_value)
+        time.sleep(1)
+        self.assertEqual('Invalid username or password!', browser.find_element(By.ID, 'name').text)
 
     def test_no_username(self):
         browser = self.browser
