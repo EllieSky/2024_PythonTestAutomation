@@ -1,12 +1,15 @@
 import time
+from faker import Faker
 
 
 class Person:
-    def __init__(self, name, salary):
+    def __init__(self):
+        data = Faker()
         # self.person_name = name
-        self.name = name
+        self.name = data.first_name()
+        self.job = data.job()
         self.net_worth = 0
-        self.hourly_salary = float(salary)
+        self.hourly_salary = float(data.random_int(20, 120))
         self.stuff = list()
 
     def introduce_self(self):
@@ -37,8 +40,8 @@ class Person:
 
 
 ####  Create 2 instances of Person class
-person1 = Person("Maria", 55)
-person2 = Person("Steve", 50)
+person1 = Person()
+person2 = Person()
 
 ####  Interact with one of the objects
 person2.introduce_self()
