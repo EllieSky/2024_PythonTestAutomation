@@ -4,10 +4,13 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 
 class AdminLoginFixture(unittest.TestCase):
+    welcome_message_element = (By.ID, 'welcome')
     def setUp(self):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         self.browser.get('http://hrm-online.portnov.com/')
@@ -15,7 +18,8 @@ class AdminLoginFixture(unittest.TestCase):
         browser.find_element(By.ID, 'txtUsername').send_keys('admin')
         browser.find_element(By.ID, 'txtPassword').send_keys('password')
         browser.find_element(By.ID, 'btnLogin').click()
-        time.sleep(2)
+        self.wait = WebDriverWait(browser, 5)
+        self.wait.until(EC.presence_of_element_located(self.welcome_message_element))
 
     def tearDown(self):
         self.browser.quit()
