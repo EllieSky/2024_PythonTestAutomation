@@ -16,6 +16,7 @@ class BrowserFixture(unittest.TestCase):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         self.wait = WebDriverWait(self.browser, 5)
 
+
 class AdminLoginFixture(BrowserFixture):
     welcome_message_element = (By.ID, 'welcome')
 

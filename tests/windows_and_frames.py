@@ -34,7 +34,20 @@ class WindowsAndFrames(BrowserFixture):
 
         pass
 
+    def test_with_frames(self):
+        self.browser.get('https://demoqa.com/nestedframes')
+        page_header = self.browser.find_element(By.CSS_SELECTOR, '#framesWrapper>h1').text
+        self.assertEqual('Nested Frames', page_header)
 
+        self.browser.switch_to.frame(self.browser.find_element(By.ID, 'frame1'))
+        self.assertEqual('Parent frame', self.browser.find_element(By.TAG_NAME, 'body').text)
+
+        self.browser.switch_to.frame(self.browser.find_element(By.TAG_NAME, 'iframe'))
+        self.assertEqual('Child Iframe', self.browser.find_element(By.TAG_NAME, 'p').text)
+
+        self.browser.switch_to.default_content()
+        page_header = self.browser.find_element(By.CSS_SELECTOR, '#framesWrapper>h1').text
+        self.assertEqual('Nested Frames', page_header)
 
 
 if __name__ == '__main__':
