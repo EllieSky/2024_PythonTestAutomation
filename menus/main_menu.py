@@ -36,3 +36,4 @@ class MainMenu:
 
         actions.perform()
         actions.reset_actions()
+
