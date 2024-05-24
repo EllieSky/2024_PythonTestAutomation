@@ -13,10 +13,10 @@ class AdminLoginFixture(unittest.TestCase):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         self.browser.get('http://hrm-online.portnov.com/')
         browser = self.browser
-        browser.find_element(By.ID, 'txtUsername').send_keys('admin')
-        browser.find_element(By.ID, 'txtPassword').send_keys('password')
-        browser.find_element(By.ID, 'btnLogin').click()
-        time.sleep()
+        # browser.find_element(By.ID, 'txtUsername').send_keys('admin')
+        # browser.find_element(By.ID, 'txtPassword').send_keys('password')
+        # browser.find_element(By.ID, 'btnLogin').click()
+        # time.sleep(3)
 
     def tearDown(self):
         self.browser.quit()
