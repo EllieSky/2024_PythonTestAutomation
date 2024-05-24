@@ -11,16 +11,21 @@ from webdriver_manager.chrome import ChromeDriverManager
 from pages.login import LoginPage
 
 
-class AdminLoginFixture(unittest.TestCase):
+class BrowserFixture(unittest.TestCase):
+    def setUp(self):
+        self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
+        self.wait = WebDriverWait(self.browser, 5)
+
+
+class AdminLoginFixture(BrowserFixture):
     welcome_message_element = (By.ID, 'welcome')
 
     def setUp(self):
-        self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
+        super().setUp()
         self.browser.get('http://hrm-online.portnov.com/')
         self.login_page = LoginPage(self.browser)
         self.login_page.authenticate()
         self.login_page.wait_for_successful_login()
-        self.wait = WebDriverWait(self.browser, 5)
         # self.wait.until(EC.presence_of_element_located(self.welcome_message_element))
         # OR
         # self.wait.until(EC.url_contains('/pim/viewEmployeeList'))
