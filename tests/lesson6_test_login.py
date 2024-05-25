@@ -65,5 +65,6 @@ class LoginTests(unittest.TestCase):
         self.assertIn('is-invalid', class_attr_value)
 
 
+
 if __name__ == '__main__':
     unittest.main()
