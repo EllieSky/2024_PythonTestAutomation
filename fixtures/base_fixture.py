@@ -15,6 +15,9 @@ class BrowserFixture(unittest.TestCase):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         self.wait = WebDriverWait(self.browser, 5)
 
+    def tearDown(self):
+        self.browser.quit()
+
 class AdminLoginFixture(BrowserFixture):
     welcome_message_element = (By.ID, 'welcome')
 
@@ -28,5 +31,3 @@ class AdminLoginFixture(BrowserFixture):
         # OR
         # self.wait.until(EC.url_contains('/pim/viewEmployeeList'))
 
-    def tearDown(self):
-        self.browser.quit()
