@@ -2,15 +2,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from pages.pages.base_page import BasePage
+from tests import DEFAULT_WAIT, ADMIN_USER, DEFAULT_PASSWORD, BASE_URL
 
-class LoginPage:
+
+class LoginPage(BasePage):
+    PAGE_URL = f'{BASE_URL}/auth/login'
+
     welcome_message_element = (By.ID, 'welcome')
 
-    def __init__(self, browser):
-        self.browser = browser
-        self.wait = WebDriverWait(browser, 5)
 
-    def authenticate(self, username='admin', password='password'):
+
+    def authenticate(self, username=ADMIN_USER, password=DEFAULT_PASSWORD):
         browser = self.browser
         browser.find_element(By.ID, 'txtUsername').send_keys(username)
         browser.find_element(By.ID, 'txtPassword').send_keys(password)
