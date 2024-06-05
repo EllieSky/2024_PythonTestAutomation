@@ -1,7 +1,7 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
-from pages.base_page import BasePage
+from pages.base_pages.base_page import BasePage
 from selenium.webdriver.support import expected_conditions as EC
 
 from tests import BASE_URL
