@@ -3,10 +3,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 from pages.base_page import BasePage
-from tests import DEFAULT_WAIT, ADMIN_USER, DEFAULT_PASSWORD
+from tests import DEFAULT_WAIT, ADMIN_USER, DEFAULT_PASSWORD, BASE_URL
 
 
 class LoginPage(BasePage):
+    PAGE_URL = f'{BASE_URL}/auth/login'
+    page_header = (By.ID, 'logInPanelHeading')
+
     welcome_message_element = (By.ID, 'welcome')
 
     def authenticate(self, username=ADMIN_USER, password=DEFAULT_PASSWORD):
