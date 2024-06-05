@@ -1,9 +1,8 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from pages.base_page import BasePage
-from tests import DEFAULT_WAIT, ADMIN_USER, DEFAULT_PASSWORD, BASE_URL
+from pages.base_pages.base_page import BasePage
+from tests import ADMIN_USER, DEFAULT_PASSWORD, BASE_URL
 
 
 class LoginPage(BasePage):
