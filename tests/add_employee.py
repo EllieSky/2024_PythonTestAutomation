@@ -23,10 +23,9 @@ class AddEmployee(AdminLoginFixture):
         self.assertEqual(first_name, self.personal_details.get_first_name())
         self.assertEqual(last_name, self.personal_details.get_last_name())
 
-        # self.user_menu.logout()
+        self.user_menu.logout()
         self.login_page.authenticate(first_name[0]+last_name)
-        # self.assertEqual(f"Welcome {first_name.capitalize()}", self.user_menu.get_greeting())
-        pass
+        self.assertEqual(f"Welcome {first_name.capitalize()}", self.user_menu.get_greeting())
 
 
 

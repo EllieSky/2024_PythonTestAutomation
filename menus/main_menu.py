@@ -9,7 +9,7 @@ class MainMenu:
     admin_user_manag_config_mi = (By.ID, 'menu_admin_Configuration')
     admin_user_manag_config_localiz_mi = (By.ID, 'menu_admin_localization')
     admin_user_manag_config_modules_mi = (By.ID, 'menu_admin_viewModules')
-
+    my_info_menu = (By.ID, 'menu_pim_viewMyDetails')
 
     def __init__(self, browser):
         self.browser = browser
@@ -36,4 +36,7 @@ class MainMenu:
 
         actions.perform()
         actions.reset_actions()
+
+    def goto_MyInfo(self):
+        self.browser.find_element(*self.my_info_menu).click()
 
