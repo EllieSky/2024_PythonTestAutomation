@@ -1,5 +1,5 @@
-import unittest
 import time
+import unittest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -7,12 +7,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from lib.browser import get_browser
 from menus.main_menu import MainMenu
 from menus.user_menu import UserMenu
-from pages import AddEmployee
-from pages import EmployeeList
-from pages import JobPage
-from pages import LoginPage
-from pages import PersonalDetails, MyInfo
-from tests import DEFAULT_WAIT
+from pages.add_employee import AddEmployee
+from pages.employee_list import EmployeeList
+from pages.job_page import JobPage
+from pages.login import LoginPage
+from pages.personal_details import PersonalDetails, MyInfo
+from tests import DEFAULT_WAIT, DOMAIN
 
 
 class BrowserFixture(unittest.TestCase):
