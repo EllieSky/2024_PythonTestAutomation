@@ -1,4 +1,5 @@
-from pages.base_page import BasePage
+from pages.base_pages.base_employee_info import BaseEmployeeInfo
+from pages.base_pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
@@ -6,8 +7,9 @@ from selenium.webdriver.support.select import Select
 from tests import BASE_URL
 
 
-class JobPage(BasePage):
-    PAGE_URL = f'{BASE_URL}/pim/viewEmployee/empNumber/'
+class JobPage(BaseEmployeeInfo):
+    PAGE_URL = f'{BASE_URL}/pim/viewJobDetails/empNumber/'
+
     btn_save = (By.ID, 'btnSave')
     btn_edit = btn_save
 
