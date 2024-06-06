@@ -16,8 +16,7 @@ class AdminLoginFixture(unittest.TestCase):
         self.browser.find_element(By.CSS_SELECTOR, '#txtPassword').send_keys(f'{password}')
         self.browser.find_element(By.CSS_SELECTOR, '#btnLogin').click()
         self.wait = WebDriverWait(self.browser, 5)
-        self.wait.until(EC.presence_of_element_located(By.CSS_SELECTOR, '#welcome'))
-
+        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, '#welcome')))
 
     def tearDown(self):
         self.browser.quit()
