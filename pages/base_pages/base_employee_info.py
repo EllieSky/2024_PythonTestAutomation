@@ -2,8 +2,8 @@ from pages.base_pages.base_page import BasePage
 
 
 class BaseEmployeeInfo(BasePage):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, browser):
+        super().__init__(browser)
         # implement and add as part of homework:
         # self.employee_info_menu = EmployeeInfoMenu(self.browser)
 
