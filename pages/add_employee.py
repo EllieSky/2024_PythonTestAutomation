@@ -1,37 +1,28 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+import unittest
+from faker import Faker
+from fixtures.base_fixture import AdminLoginFixture
 
-from pages.base_page import BasePage
-from tests import BASE_URL, DEFAULT_PASSWORD
+class AddEmployee(AdminLoginFixture):
+    data = Faker()
+    def test_add_employee_with_credentials(self):
+        first_name = self.data.first_name()
+        last_name = self.data.last_name()
+        self.employee_list.add()
+
+        self.add_employee.enter_employee_info(first_name, last_name)
+        self.add_employee.create_login_details(first_name[0]+last_name)
+        self.add_employee.save()
+        self.assertEqual(first_name, self.personal_details.get_first_name())
+        self.assertEqual(last_name, self.personal_details.get_last_name())
+
+        # self.user_menu.logout()
+        self.user_menu.logout()
+        self.login_page.authenticate(first_name[0]+last_name)
+        # self.assertEqual(f"Welcome {first_name.capitalize()}", self.user_menu.get_greeting())
+        pass
+        self.assertEqual(f"Welcome {first_name.capitalize()}", self.user_menu.get_greeting())
 
 
-class AddEmployee(BasePage):
-    PAGE_URL = f'{BASE_URL}/pim/addEmployee'
 
-    fld_first_name = (By.ID, 'firstName')
-    fld_last_name = (By.ID, 'lastName')
-    fld_middle_name = (By.ID, 'middleName')
-    fld_employee_id = (By.ID, 'employeeId')
-    fld_user_name = (By.ID, 'user_name')
-    fld_password = (By.ID, 'user_password')
-    fld_re_password = (By.ID, 're_password')
-    chk_create_login_details = (By.ID, 'chkLogin')
-
-    btn_save = (By.ID, 'btnSave')
-
-    def enter_employee_info(self, first_name, last_name, middle_name='', employee_id=None):
-        self.wait.until(EC.presence_of_element_located(self.fld_first_name)).send_keys(first_name)
-        self.wait.until(EC.presence_of_element_located(self.fld_last_name)).send_keys(last_name)
-        if middle_name:
-            self.wait.until(EC.presence_of_element_located(self.fld_middle_name)).send_keys(middle_name)
-        if employee_id is not None:
-            self.browser.find_element(*self.fld_employee_id).send_keys(employee_id)
-
-    def create_login_details(self, username, password=DEFAULT_PASSWORD, re_password=DEFAULT_PASSWORD):
-        self.wait.until(EC.presence_of_element_located(self.chk_create_login_details)).click()
-        self.wait.until(EC.visibility_of_element_located(self.fld_user_name)).send_keys(username)
-        self.wait.until(EC.visibility_of_element_located(self.fld_password)).send_keys(password)
-        self.wait.until(EC.visibility_of_element_located(self.fld_re_password)).send_keys(re_password)
-
-    def save(self):
-        self.wait.until(EC.presence_of_element_located(self.btn_save)).click()
+if __name__ == '__main__':
+    unittest.main()

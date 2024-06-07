@@ -20,3 +20,8 @@ class LoginPage(BasePage):
 
     def wait_for_successful_login(self):
         self.wait.until(EC.presence_of_element_located(self.welcome_message_element))
+
+
+
+
+
