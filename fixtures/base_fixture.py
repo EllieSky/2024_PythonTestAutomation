@@ -1,14 +1,12 @@
-import time
 import unittest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from pages.login import LoginPage
+from pages import LoginPage
 from tests import DEFAULT_WAIT, DOMAIN
 
 

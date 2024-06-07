@@ -1,19 +1,16 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+from menus.base_menu import BaseMenu
 
-class MainMenu:
+
+class MainMenu(BaseMenu):
 
     admin_menu = (By.ID, 'menu_admin_viewAdminModule')
     admin_user_manag_mi = (By.ID, 'menu_admin_UserManagement')
     admin_user_manag_config_mi = (By.ID, 'menu_admin_Configuration')
     admin_user_manag_config_localiz_mi = (By.ID, 'menu_admin_localization')
     admin_user_manag_config_modules_mi = (By.ID, 'menu_admin_viewModules')
-
-
-    def __init__(self, browser):
-        self.browser = browser
-        self.actions = ActionChains(self.browser)
+    my_info_menu = (By.ID, 'menu_pim_viewMyDetails')
 
     def goto_Admin_Config_Localization(self):
         actions = self.actions
@@ -36,4 +33,8 @@ class MainMenu:
 
         actions.perform()
         actions.reset_actions()
+
+    def goto_MyInfo(self):
+        self.browser.find_element(*self.my_info_menu).click()
+
 
