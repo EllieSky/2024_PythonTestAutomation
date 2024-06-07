@@ -9,12 +9,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
 from pages.login import LoginPage
+from tests import DEFAULT_WAIT, DOMAIN
 
 
 class BrowserFixture(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
-        self.wait = WebDriverWait(self.browser, 5)
+        self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
 
 
 class AdminLoginFixture(BrowserFixture):
@@ -22,7 +23,7 @@ class AdminLoginFixture(BrowserFixture):
 
     def setUp(self):
         super().setUp()
-        self.browser.get('http://hrm-online.portnov.com/')
+        self.browser.get(DOMAIN)
         self.login_page = LoginPage(self.browser)
         self.login_page.authenticate()
         self.login_page.wait_for_successful_login()
