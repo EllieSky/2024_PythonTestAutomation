@@ -14,3 +14,4 @@ class EmployeeList(BasePage):
     def add(self):
         self.wait.until(EC.presence_of_element_located(self.btn_add)).click()
         self.wait.until(EC.url_changes(self.PAGE_URL))
+
