@@ -1,48 +1,72 @@
+import os.path
 import time
 import unittest
 
+from faker import Faker
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
+from fixtures.pages import Pages
 from lib.browser import get_browser
 from menus.main_menu import MainMenu
 from menus.user_menu import UserMenu
-from pages.add_employee import AddEmployee
-from pages.employee_list import EmployeeList
-from pages.job_page import JobPage
-from pages.login import LoginPage
-from pages.personal_details import PersonalDetails, MyInfo
-from tests import DEFAULT_WAIT, DOMAIN
+from tests import DEFAULT_WAIT, DOMAIN, PROJECT_DIR
 
 
 class BrowserFixture(unittest.TestCase):
     def setUp(self):
         self.browser = get_browser()
         self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
+        self.fake_data = Faker()
 
     def tearDown(self):
+        if ((hasattr(self._outcome, 'errors') and self._outcome.errors[1][1]) or
+                (self._outcome.result.failures and self._outcome.result.failures[0][1])):
+
+            test_results = os.path.join(PROJECT_DIR, 'test_results')
+
+            if not os.path.exists(test_results):
+                os.mkdir(test_results)
+
+            pieces = self._outcome.result.current_test_id.split('.')
+            test_name = pieces.pop()
+
+            folder_path = test_results
+            for piece in pieces:
+                folder_path = os.path.join(folder_path, piece)
+                if not os.path.exists(folder_path):
+                    os.mkdir(folder_path)
+
+            screenshot_path = os.path.join(folder_path, f'{test_name}.png')
+            self.browser.save_screenshot(screenshot_path)
+
+
+            page_src_path = os.path.join(folder_path, f'{test_name}.html')
+            file = open(page_src_path,'w')
+            file.write(self.browser.page_source)
+            file.close()
+
         self.browser.quit()
 
 
-class AdminLoginFixture(BrowserFixture):
+class HRMBaseFixture(BrowserFixture):
+    def setUp(self):
+        super().setUp()
+        # self.browser.get(DOMAIN)
+        self.page = Pages(self.browser)
+        self.user_menu = UserMenu(self.browser)
+        self.main_menu = MainMenu(self.browser)
+
+
+class AdminLoginFixture(HRMBaseFixture):
     welcome_message_element = (By.ID, 'welcome')
 
     def setUp(self):
         super().setUp()
-        # self.browser.get(DOMAIN)
-        self.login_page = LoginPage(self.browser)
-        self.employee_list = EmployeeList(self.browser)
-        self.add_employee = AddEmployee(self.browser)
-        self.personal_details = PersonalDetails(self.browser)
-        self.my_info = MyInfo(self.browser)
-        self.job_page = JobPage(self.browser)
 
-        self.user_menu = UserMenu(self.browser)
-        self.main_menu = MainMenu(self.browser)
-
-        self.login_page.go_to_page()
-        self.login_page.authenticate()
-        self.login_page.wait_for_successful_login()
+        self.page.login_page.go_to_page()
+        self.page.login_page.authenticate()
+        self.page.login_page.wait_for_successful_login()
         # self.wait.until(EC.presence_of_element_located(self.welcome_message_element))
         # OR
         # self.wait.until(EC.url_contains('/pim/viewEmployeeList'))
