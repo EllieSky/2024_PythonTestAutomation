@@ -1,3 +1,4 @@
+@no-browser
 Feature: Counting letters examples.
   This will have several scenarios to demo Gherkin for testing
 
