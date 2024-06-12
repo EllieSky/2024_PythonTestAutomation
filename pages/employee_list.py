@@ -1,13 +1,14 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
+from blocks.results_table import ResultTableBlock
 from pages.base_pages.base_page import BasePage
 from selenium.webdriver.support import expected_conditions as EC
 
 from tests import BASE_URL
 
 
-class EmployeeList(BasePage):
+class EmployeeList(BasePage, ResultTableBlock):
     PAGE_URL = f'{BASE_URL}/pim/viewEmployeeList'
 
     btn_add = (By.ID, 'btnAdd')
@@ -23,6 +24,3 @@ class EmployeeList(BasePage):
 
     def search(self):
         self.wait.until(EC.presence_of_element_located((By.ID, 'searchBtn'))).click()
-
-    def view_record(self, row=1):
-        self.browser.find_element(By.XPATH, f'//table//tr[{row}]/td[3]/a').click()
