@@ -15,6 +15,7 @@ class SystemUsers(BasePage, ResultTableBlock, SearchResetBlock, AddDeleteBlock):
     fld_username = (By.ID, 'searchSystemUser_userName')
 
     def search_by_username(self, username):
-        self.wait.until(EC.presence_of_element_located(
-            self.fld_username)
-        ).send_keys(username, Keys.ENTER)
+        self.enter_text(self.fld_username, (username, Keys.ENTER))
+        # self.wait.until(EC.presence_of_element_located(
+        #     self.fld_username)
+        # ).send_keys(username, Keys.ENTER)

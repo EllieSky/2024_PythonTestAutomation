@@ -7,13 +7,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from fixtures.pages import Pages
+from lib.base_methods import BaseMethods
 from lib.browser import get_browser
 from menus.main_menu import MainMenu
 from menus.user_menu import UserMenu
 from tests import DEFAULT_WAIT, DOMAIN, PROJECT_DIR
 
 
-class BrowserFixture(unittest.TestCase):
+class BrowserFixture(unittest.TestCase, BaseMethods):
     def setUp(self):
         self.browser = get_browser()
         self.wait = WebDriverWait(self.browser, DEFAULT_WAIT)
