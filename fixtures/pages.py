@@ -3,6 +3,7 @@ from pages.employee_list import EmployeeList
 from pages.job_page import JobPage
 from pages.login import LoginPage
 from pages.personal_details import PersonalDetails, MyInfo
+from pages.system_users import SystemUsers
 
 
 class Pages:
@@ -13,3 +14,4 @@ class Pages:
         self.personal_details = PersonalDetails(browser)
         self.my_info = MyInfo(browser)
         self.job_page = JobPage(browser)
+        self.system_users = SystemUsers(browser)

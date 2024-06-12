@@ -37,3 +37,6 @@ class MainMenu(BaseMenu):
     def goto_MyInfo(self):
         self.browser.find_element(*self.my_info_menu).click()
 
+    def goto_Admin(self):
+        self.browser.find_element(*self.admin_menu).click()
+

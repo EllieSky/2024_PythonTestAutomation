@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from blocks.base_block import BaseBlock
 
 
-class SearchClearBlock(BaseBlock):
+class SearchResetBlock(BaseBlock):
     btn_search = (By.ID, 'searchBtn')
     btn_reset = (By.ID, 'resetBtn')
 
