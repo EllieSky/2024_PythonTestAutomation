@@ -4,11 +4,13 @@ from blocks.base_block import BaseBlock
 
 
 class ResultTableBlock(BaseBlock):
+    table_result = (By.ID, 'resultTable')
+
     def sort_by_column(self, column):
         if type(column) == int:
-            self.browser.find_element(By.XPATH, f'(//table[@id="resultTable"]//th/a)[{column}]').click()
+            self.browser.find_element(*self.table_result).find_element(By.XPATH, f'(.//th/a)[{column}]').click()
         else:
-            self.browser.find_element(By.XPATH, f'//table[@id="resultTable"]//th/a[text()={str(column)}]').click()
+            self.browser.find_element(*self.table_result).find_element(By.XPATH, f'.//th/a[text()={str(column)}]').click()
 
     def view_record(self, row:int=1):
         self.browser.find_element(By.XPATH, f'//table/tbody/tr[{row}]/td[3]/a').click()
