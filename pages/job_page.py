@@ -8,7 +8,8 @@ from tests import BASE_URL
 
 
 class JobPage(BaseEmployeeInfo):
-    PAGE_URL = f'{BASE_URL}/pim/viewJobDetails/empNumber/'
+    def PAGE_URL(self):
+        return f'{BASE_URL}/pim/viewJobDetails/empNumber/'
 
     btn_save = (By.ID, 'btnSave')
     btn_edit = btn_save

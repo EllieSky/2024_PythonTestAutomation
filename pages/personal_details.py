@@ -8,7 +8,8 @@ from tests import BASE_URL
 
 
 class PersonalDetails(BaseEmployeeInfo):
-    PAGE_URL = f'{BASE_URL}/pim/viewEmployee/empNumber/'
+    def PAGE_URL(self):
+        return f'{BASE_URL}/pim/viewEmployee/empNumber/'
 
     fld_first_name = (By.ID, 'personal_txtEmpFirstName')
     fld_last_name = (By.ID, 'personal_txtEmpLastName')
