@@ -11,7 +11,8 @@ from tests import BASE_URL
 
 
 class EmployeeList(BasePage, ResultTableBlock, AddDeleteBlock, SearchResetBlock):
-    PAGE_URL = f'{BASE_URL}/pim/viewEmployeeList'
+    def PAGE_URL(self):
+        return f'{BASE_URL}/pim/viewEmployeeList'
 
     def search_by_employee_name(self, emp_name):
         self.wait.until(EC.presence_of_element_located(

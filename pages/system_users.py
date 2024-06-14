@@ -10,7 +10,8 @@ from tests import BASE_URL
 
 
 class SystemUsers(BasePage, ResultTableBlock, SearchResetBlock, AddDeleteBlock):
-    PAGE_URL = f'{BASE_URL}/admin/viewSystemUsers'
+    def PAGE_URL(self):
+        return f'{BASE_URL}/admin/viewSystemUsers'
 
     fld_username = (By.ID, 'searchSystemUser_userName')
 

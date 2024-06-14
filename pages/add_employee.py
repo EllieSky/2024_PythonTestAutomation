@@ -6,7 +6,9 @@ from tests import BASE_URL, DEFAULT_PASSWORD
 
 
 class AddEmployee(BasePage):
-    PAGE_URL = f'{BASE_URL}/pim/addEmployee'
+    @property
+    def PAGE_URL(self):
+        return f'{BASE_URL}/pim/addEmployee'
 
     fld_first_name = (By.ID, 'firstName')
     fld_last_name = (By.ID, 'lastName')

@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
@@ -7,7 +9,13 @@ from tests import DEFAULT_WAIT
 
 
 class BasePage(BaseMethods):
-    PAGE_URL = None
+
+    @property
+    @abstractmethod
+    def PAGE_URL(self):
+        return
+
+    # PAGE_URL = None
     page_header = (By.CSS_SELECTOR, '.head>h1')
 
     def __init__(self, browser):

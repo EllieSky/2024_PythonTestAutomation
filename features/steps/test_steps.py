@@ -1,4 +1,6 @@
 from behave import given, when, then
+from faker import Faker
+
 
 @given('my word is {name}')
 @given('my last name is {name}')
@@ -8,6 +10,12 @@ def get_input(context, name):
         context.input_name += name
     else:
         context.input_name = name
+
+@given('I choose a word at random')
+def generate_word(context):
+    # context.fake_data:Faker
+    context.input_name = context.fake_data.word()
+
 
 
 @when('I count the letters in my word')
