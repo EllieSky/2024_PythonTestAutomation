@@ -12,7 +12,7 @@ from pc_pages.pc_login import LoginPage
 
 
 class AdminLoginFixture(unittest.TestCase):
-    def setUp(self, username='admin', password='password'):
+    def setUp(self):
         self.browser = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         self.browser.get('http://hrm-online.portnov.com/')
 
