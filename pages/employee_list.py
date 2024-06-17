@@ -11,6 +11,7 @@ from tests import BASE_URL
 
 
 class EmployeeList(BasePage, ResultTableBlock, AddDeleteBlock, SearchResetBlock):
+    @property
     def PAGE_URL(self):
         return f'{BASE_URL}/pim/viewEmployeeList'
 
