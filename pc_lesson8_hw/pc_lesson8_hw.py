@@ -6,13 +6,13 @@ from selenium.webdriver.common.by import By
 
 from pc_fixtures.base_fixture import AdminLoginFixture
 from pc_pages.pc_login import LoginPage
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions as EC, wait
 
 
 class MyTestCase(AdminLoginFixture):
     def __init__(self, methodName: str = "runTest"):
         super().__init__(methodName)
-        self.wait = None
+
 
     def test_add_person(self):
         person_random = Faker()
@@ -35,7 +35,7 @@ class MyTestCase(AdminLoginFixture):
         self.browser.find_element(By.CSS_SELECTOR, '#user_password').send_keys(f'{password}')
         self.browser.find_element(By.CSS_SELECTOR, '#re_password').send_keys(f'{password}')
         self.browser.find_element(By.CSS_SELECTOR, '#btnSave').click()
-        self.wait.until()
+
         first_last_name = self.browser.find_element(By.CSS_SELECTOR, '#profile-pic > h1').text
 
         self.assertEqual(first_last_name, f"{first_name} {last_name}")
