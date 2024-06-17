@@ -10,6 +10,7 @@ from tests import BASE_URL
 
 
 class SystemUsers(BasePage, ResultTableBlock, SearchResetBlock, AddDeleteBlock):
+    @property
     def PAGE_URL(self):
         return f'{BASE_URL}/admin/viewSystemUsers'
 

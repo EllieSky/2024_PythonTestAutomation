@@ -6,8 +6,11 @@ from tests import ADMIN_USER, DEFAULT_PASSWORD, BASE_URL
 
 
 class LoginPage(BasePage):
+
+    @property
     def PAGE_URL(self):
         return f'{BASE_URL}/auth/login'
+
     page_header = (By.ID, 'logInPanelHeading')
 
     welcome_message_element = (By.ID, 'welcome')

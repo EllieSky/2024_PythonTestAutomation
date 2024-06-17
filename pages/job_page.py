@@ -8,6 +8,7 @@ from tests import BASE_URL
 
 
 class JobPage(BaseEmployeeInfo):
+    @property
     def PAGE_URL(self):
         return f'{BASE_URL}/pim/viewJobDetails/empNumber/'
 
