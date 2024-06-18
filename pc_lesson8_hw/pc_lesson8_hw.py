@@ -12,7 +12,7 @@ from pc_pages.pc_login import LoginPage
 from selenium.webdriver.support import expected_conditions as EC, wait
 
 
-class MyTestCase(AdminLoginFixture):
+class AddUser(AdminLoginFixture):
 
     def __init__(self, methodName: str = "runTest"):
         super().__init__(methodName)
