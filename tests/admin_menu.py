@@ -11,6 +11,8 @@ class AdminMenu(AdminLoginFixture):
         MainMenu(self.browser).goto_Admin_Config_Localization()
         self.assertEqual('Localization', self.browser.find_element(By.ID, 'localizationHeading').text)
 
+        self.assertFalse(True, "Intentionally added failure to demo CI artifact creation and storage")
+
 
 if __name__ == '__main__':
     unittest.main()
