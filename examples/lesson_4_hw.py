@@ -1,4 +1,4 @@
-
+Import time
 
 class Person():
     def __init__(self, name, salary):
